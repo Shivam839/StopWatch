@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #datebox{
+            width:25% ;
+            height: 70%;
+            box-shadow: 10px 10px 20px red;
+            text-align: center;
+            padding:20px 10px;
+            font-size: 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        #timeshow{
+            width: 98%;
+            height: 30%;
+            padding-top: 20px;
+            font-size: 3rem;
+        }
+        #btn{
+            width: 98%;
+            height: 20%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2;
+            justify-content: space-between;
+            
+        }
+        #notification{
+            width: 98%;
+            height: 40%;
+            padding: 10px 20px;
+
+        }
+        button{
+            width: 35%;
+            height: 40px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: rgb(241, 114, 135);
+            color: antiquewhite;
+        }
+        p{
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="datebox">
+        <div id="timeshow">
+            0
+        </div>
+        <div class="btn">
+            <button id="Start">Start</button>
+            <button id="Stop">Stop</button>
+            <button id="Reset">Reset</button>
+            <button id="getTime">getTime</button>
+            <button id="clearTime">clearTime</button>
+        </div>
+        <div id="notification">
+
+        </div>
+    </div>
+
+    <script>
+        let timeshow = document.getElementById("timeshow")
+        let Start = document.getElementById("Start")
+        let Stop = document.getElementById("Stop")
+        let Reset = document.getElementById("Reset")
+        let getTime = document.getElementById("getTime")
+        let clearTime = document.getElementById("clearTime")
+        let notification = document.getElementById("notification")
+
+        let startCount = 0
+        let intervalid
+
+        
+
+        const startTimer = () =>{
+         intervalid =    setInterval(()=>{
+                timeshow.innerText =startCount++
+            },1000)
+            
+        }   
+        const stopTimer = () => {
+            clearInterval(intervalid)
+        }
+
+        const resetTimer = () =>{
+            startCount = 0
+            timeshow.innerText =startCount
+            clearInterval(intervalid)
+        }
+        const getTimer = () =>{
+            notification.innerHTML += `<p>The stop time is ${startCount}. </p>`
+        }
+
+        const clearTimer = () =>{
+            notification.innerText =""
+        }
+        Start.addEventListener("click",startTimer)
+        Stop.addEventListener("click",stopTimer)
+        Reset.addEventListener("click",resetTimer)
+        getTime.addEventListener("click",getTimer)
+        clearTime.addEventListener("click",clearTimer)
+
+
+
+
+
+    </script>
+</body>
+</html>
